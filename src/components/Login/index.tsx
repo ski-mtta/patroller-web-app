@@ -17,7 +17,7 @@ class Login extends Component<any, any> {
             patroller: { sp_number, password },
         } = this.props
         return this.state.redirect ? (
-            <Redirect to={'/join'} />
+            <Redirect push to={'/join'} />
         ) : (
             <Pane alignContent={'center'} elevation={4} width={420}>
                 <FormField
