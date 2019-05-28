@@ -8,13 +8,15 @@ import './index.css'
 import * as serviceWorker from './serviceWorker'
 
 import Layout from './components/Layout'
-import Welcome from './components/Welcome'
+import Login from './components/Login'
+import Join from './components/Join'
 
 const App = () => (
     <Layout
         Router={() => (
             <Router>
-                <Route path={'/'} exact component={Welcome} />
+                <Route path={'/'} exact component={Login} />
+                <Route path={'/join'} exact component={Join} />
             </Router>
         )}
     />

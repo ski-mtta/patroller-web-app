@@ -1,19 +1,28 @@
 import React, { Component, Props } from 'react'
-import { Store } from 'redux'
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Pane, FormField, TextInput, Button } from 'evergreen-ui'
 
 class Login extends Component<any, any> {
+    constructor(props: any) {
+        super(props)
+        this.state = {
+            redirect: false,
+        }
+    }
+
     render() {
         const {
             dispatch,
             patroller: { sp_number, password },
         } = this.props
-        return (
+        return this.state.redirect ? (
+            <Redirect to={'/join'} />
+        ) : (
             <Pane alignContent={'center'} elevation={4} width={420}>
-                <FormField 
-                    label={<h2>MTTA Ski Patrol Login</h2>} 
-                    padding={10} 
+                <FormField
+                    label={<h2>MTTA Ski Patrol Login</h2>}
+                    padding={10}
                     width={400}
                 >
                     <TextInput
@@ -61,13 +70,14 @@ class Login extends Component<any, any> {
                     >
                         Login
                     </Button>
-                    <br/>
+                    <br />
                     <Button
                         height={36}
                         width={400}
                         marginTop={5}
                         justifyContent={'center'}
                         disabled={false}
+                        onClick={() => this.setState({ redirect: true })}
                     >
                         Join Ski Patrol
                     </Button>

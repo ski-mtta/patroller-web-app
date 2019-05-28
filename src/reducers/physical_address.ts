@@ -2,12 +2,10 @@ import { AnyAction } from 'redux'
 import { statement } from '@babel/template'
 
 const INITIAL_STATE = {
-    sp_number: undefined,
-    name: '',
-    email: '',
-    phone_number: '',
-    password: '',
-    patroller_id: '',
+    street_address: '',
+    city: '',
+    state: '',
+    zip_code: '',
 }
 
 export default function(
@@ -15,7 +13,7 @@ export default function(
     { type, id, value }: AnyAction,
 ) {
     switch (type) {
-        case 'PATROLLER_ACTION':
+        case 'PATROLLER_PHYSICAL_ADDRESS_ACTION':
             return {
                 ...state,
                 [id]: value,

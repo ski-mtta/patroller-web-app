@@ -9,12 +9,11 @@ class Layout extends Component<any, any> {
     render() {
         const { Router } = this.props
         return (
-            <Pane 
-                height={1000}
-                padding={150}
-            >
-                {/* <Header /> */}
-                <Router />
+            <Pane height={900}>
+                <Pane padding={100} display={'flex'} justifyContent={'center'}>
+                    {/* <Header /> */}
+                    <Router />
+                </Pane>
             </Pane>
         )
     }
