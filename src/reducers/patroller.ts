@@ -7,6 +7,7 @@ const INITIAL_STATE = {
     email: '',
     phone_number: '',
     password: '',
+    retype_password: '',
     patroller_id: '',
 }
 

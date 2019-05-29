@@ -3,7 +3,7 @@ import { Store } from 'redux'
 import { connect } from 'react-redux'
 import { Pane } from 'evergreen-ui'
 
-import Login from '../Login';
+import Login from '../Login'
 
 class Welcome extends Component<any, any> {
     render() {

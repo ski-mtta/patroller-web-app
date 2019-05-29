@@ -1,10 +1,10 @@
 import React, { Component, Props } from 'react'
 import { connect } from 'react-redux'
 import { Pane, FormField, TextInput, Button } from 'evergreen-ui'
-import { number } from 'prop-types';
-import { title } from "change-case";
+import { number } from 'prop-types'
+import { title } from 'change-case'
 
-import PhysicalAddress from '../PhysicalAddress';
+import PhysicalAddress from '../PhysicalAddress'
 
 class Join extends Component<any, any> {
     renderPatrollerDetails() {
@@ -29,16 +29,36 @@ class Join extends Component<any, any> {
                         width={400}
                         marginTop={5}
                         name={item}
-                        type={(() => {
-                            if (item === 'sp_number') {
-                                return 'number';
-                            } else if (item === 'password') {
-                                return 'password';
+                        isInvalid={(() => {
+                            if (
+                                item === 'retype_password' &&
+                                patroller[item].length > 0
+                            ) {
+                                console.log(patroller[item], patroller['password']);
+                                return item != patroller['password']
                             } else {
-                                return 'string';
+                                return false
                             }
                         })()}
-                        placeholder={item === 'sp_number' ? 'Ski Patrol Number (If Issued)' : title(item)}
+                        // required
+                        // validationmessage={'Please ensure your password is correctly entered.'}
+                        type={(() => {
+                            if (item === 'sp_number') {
+                                return 'number'
+                            } else if (
+                                item === 'password' ||
+                                item === 'retype_password'
+                            ) {
+                                return 'password'
+                            } else {
+                                return 'string'
+                            }
+                        })()}
+                        placeholder={
+                            item === 'sp_number'
+                                ? 'Ski Patrol Number (If Issued)'
+                                : title(item)
+                        }
                         value={patroller[item]}
                         onChange={(e: any) => {
                             dispatch({
@@ -61,7 +81,7 @@ class Join extends Component<any, any> {
         return (
             <Pane elevation={4} width={420}>
                 <FormField
-                    label={<h2>Join Ski Patrol</h2>}
+                    label={<h2>Join MTTA Ski Patrol</h2>}
                     padding={10}
                     width={400}
                 >

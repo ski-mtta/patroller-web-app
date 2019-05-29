@@ -1,14 +1,11 @@
 import React, { Component, Props } from 'react'
 import { connect } from 'react-redux'
 import { Pane, FormField, TextInput, Button } from 'evergreen-ui'
-import { title } from "change-case";
+import { title } from 'change-case'
 
 class PhysicalAddress extends Component<any, any> {
     renderPhysicalAddressInputs() {
-        const {
-            dispatch,
-            physical_address,
-        } = this.props
+        const { dispatch, physical_address } = this.props
 
         return Object.keys(physical_address).map((item, i) => {
             return (
@@ -34,15 +31,10 @@ class PhysicalAddress extends Component<any, any> {
     }
 
     render() {
-        const {
-            dispatch,
-        } = this.props
+        const { dispatch } = this.props
         return (
             <Pane>
-                <FormField
-                    label={<h4>Physical Address</h4>}
-                    padding={5}
-                >
+                <FormField label={<h4>Physical Address</h4>} padding={5}>
                     {this.renderPhysicalAddressInputs()}
                 </FormField>
             </Pane>
@@ -54,7 +46,6 @@ const mapStateToProps = (state: any, props: Props<any>) => {
     return {
         main: state.main,
         physical_address: state.physical_address,
-
     }
 }
 
