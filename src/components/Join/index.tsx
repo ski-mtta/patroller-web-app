@@ -1,10 +1,11 @@
 import React, { Component, Props } from 'react'
 import { connect } from 'react-redux'
-import { Pane, FormField, TextInput, Button } from 'evergreen-ui'
+import { Pane, FormField, TextInputField, Button } from 'evergreen-ui'
 import { number } from 'prop-types'
 import { title } from 'change-case'
 
 import PhysicalAddress from '../PhysicalAddress'
+import Password from '../Password'
 
 class Join extends Component<any, any> {
     renderPatrollerDetails() {
@@ -15,7 +16,9 @@ class Join extends Component<any, any> {
                 if (
                     // item === 'sp_number' ||
                     // item === 'password' ||
-                    item === 'patroller_id'
+                    item === 'patroller_id' ||
+                    item === 'password' ||
+                    item === 'retype_password'
                 ) {
                     return false
                 } else {
@@ -24,24 +27,38 @@ class Join extends Component<any, any> {
             })
             .map((item, i) => {
                 return (
-                    <TextInput
+                    <TextInputField
                         key={i}
-                        width={400}
-                        marginTop={5}
+                        width={280}
+                        margin={5}
+                        label={title(item)}
                         name={item}
                         isInvalid={(() => {
                             if (
-                                item === 'retype_password' &&
+                                item == 'retype_password' &&
                                 patroller[item].length > 0
                             ) {
-                                console.log(patroller[item], patroller['password']);
-                                return item != patroller['password']
+                                return patroller[item] != patroller['password']
                             } else {
                                 return false
                             }
                         })()}
-                        // required
-                        // validationmessage={'Please ensure your password is correctly entered.'}
+                        required={(() => {
+                            if (item === 'sp_number') {
+                                return false
+                            } else {
+                                return true
+                            }
+                        })()}
+                        validationMessage={(() => {
+                            if (
+                                item == 'retype_password' &&
+                                patroller[item].length > 0 &&
+                                patroller[item] != patroller['password']
+                            ) {
+                                return 'Please ensure your password is correctly entered.'
+                            }
+                        })()}
                         type={(() => {
                             if (item === 'sp_number') {
                                 return 'number'
@@ -67,7 +84,6 @@ class Join extends Component<any, any> {
                                 value: e.target.value,
                             })
                         }}
-                        height={40}
                     />
                 )
             })
@@ -76,24 +92,41 @@ class Join extends Component<any, any> {
     render() {
         const {
             dispatch,
-            patroller: { password },
+            patroller,
+            client
         } = this.props
         return (
-            <Pane elevation={4} width={420}>
+            <Pane
+                display={'flex'}
+                justifyContent={'center'}
+                elevation={4}
+                width={320}
+            >
                 <FormField
-                    label={<h2>Join MTTA Ski Patrol</h2>}
-                    padding={10}
-                    width={400}
+                    label={
+                        <h2 style={{ paddingLeft: 10 }}>
+                            Join MTTA Ski Patrol
+                        </h2>
+                    }
+                    width={300}
+                    padding={5}
                 >
                     {this.renderPatrollerDetails()}
                     <PhysicalAddress />
+                    <hr />
+                    <Password />
+                    <hr />
                     <Button
                         height={42}
-                        width={400}
-                        marginTop={5}
+                        width={280}
+                        margin={5}
                         appearance={'primary'}
                         intent={'danger'}
                         justifyContent={'center'}
+                        onClick={() => {
+                            console.log('patroller', patroller);
+                            dispatch(client.createPatroller(patroller));
+                        }}
                     >
                         Join
                     </Button>
@@ -107,6 +140,7 @@ const mapStateToProps = (state: any, props: Props<any>) => {
     return {
         main: state.main,
         patroller: state.patroller,
+        client: state.api.client
     }
 }
 

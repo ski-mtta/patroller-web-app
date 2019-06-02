@@ -19,15 +19,24 @@ class Login extends Component<any, any> {
         return this.state.redirect ? (
             <Redirect push to={'/join'} />
         ) : (
-            <Pane alignContent={'center'} elevation={4} width={420}>
+            <Pane
+                display={'flex'}
+                justifyContent={'center'}
+                elevation={4}
+                width={320}
+            >
                 <FormField
-                    label={<h2>MTTA Ski Patrol Login</h2>}
-                    padding={10}
-                    width={400}
+                    label={
+                        <h2 style={{ paddingLeft: 10 }}>
+                            MTTA Ski Patrol Login
+                        </h2>
+                    }
+                    width={300}
+                    padding={5}
                 >
                     <TextInput
-                        width={400}
-                        marginTop={5}
+                        width={280}
+                        margin={5}
                         name="sp_number"
                         type={'number'}
                         min={0}
@@ -45,8 +54,8 @@ class Login extends Component<any, any> {
                     />
                     <br />
                     <TextInput
-                        width={400}
-                        marginTop={5}
+                        width={280}
+                        margin={5}
                         name="password"
                         type={'password'}
                         placeholder={'Password'}
@@ -62,8 +71,8 @@ class Login extends Component<any, any> {
                     />
                     <Button
                         height={42}
-                        width={400}
-                        marginTop={5}
+                        width={280}
+                        margin={5}
                         appearance={'primary'}
                         intent={'danger'}
                         justifyContent={'center'}
@@ -73,8 +82,8 @@ class Login extends Component<any, any> {
                     <br />
                     <Button
                         height={36}
-                        width={400}
-                        marginTop={5}
+                        width={280}
+                        margin={5}
                         justifyContent={'center'}
                         disabled={false}
                         onClick={() => this.setState({ redirect: true })}
