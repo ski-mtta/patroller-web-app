@@ -10,7 +10,7 @@ class Layout extends Component<any, any> {
         const { Router } = this.props
         return (
             <Pane>
-                <Pane padding={15} display={'flex'} justifyContent={'center'}>
+                <Pane padding={15}>
                     {/* <Header /> */}
                     <Router />
                 </Pane>

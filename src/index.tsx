@@ -10,6 +10,7 @@ import * as serviceWorker from './serviceWorker'
 import Layout from './components/Layout'
 import Login from './components/Login'
 import Join from './components/Join'
+import Profile from './components/Profile'
 
 const App = () => (
     <Layout
@@ -17,6 +18,7 @@ const App = () => (
             <Router>
                 <Route path={'/'} exact component={Login} />
                 <Route path={'/join'} exact component={Join} />
+                <Route path={'/profile'} exact component={Profile} />
             </Router>
         )}
     />

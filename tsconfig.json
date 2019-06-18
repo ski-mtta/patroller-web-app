@@ -21,6 +21,7 @@
   },
   "include": [
     "src",
-    "evergreen-ui.d.ts"
+    "evergreen-ui.d.ts",
+    "react-css-grid.d.ts"
   ]
 }

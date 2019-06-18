@@ -1,8 +1,8 @@
 import { AnyAction } from 'redux'
-import Api from "../actions";
+import Api from '../actions'
 
 const INITIAL_STATE = {
-    client: new Api({})
+    client: new Api({}),
 }
 
 export default function(
