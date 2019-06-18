@@ -1,7 +1,7 @@
 import React, { Component, Props } from 'react'
 import { connect } from 'react-redux'
 import Grid from 'react-css-grid'
-import { Pane } from 'evergreen-ui'
+import { Pane, Avatar, Heading, Tab, Icon } from 'evergreen-ui'
 
 class Profile extends Component<any, any> {
     componentDidMount() {
@@ -13,20 +13,37 @@ class Profile extends Component<any, any> {
             patroller: { first_name, last_name, profile_pic },
         } = this.props
         return (
-            <Pane justifyContent={'left'}>
-                <Grid width={200}>
-                    <div
-                        style={{
-                            width: 180,
-                            padding: 5,
-                        }}
-                    >
-                        <img src={profile_pic} />
+            <Pane clearfix>
+                <Grid 
+                    width={200}
+                    gap={30}
+                >
+                    <div>
+                        <Pane 
+                            elevation = {1}
+                            alignItems = "center"
+                            width = {180}
+                            height = {400}
+                            backgroundColor = "white"
+                            flexDirection = "column"
+                        >
+                            <Avatar src={profile_pic} name={first_name}/>
+                            <Heading>Welcome, {first_name} {last_name}</Heading>
+                            <Tab isSelected> <Icon icon="person" />  Profile</Tab>
+                            <Tab> <Icon icon="calendar" />  Schedule</Tab>
+                            <Tab> <Icon icon="feed" />  News</Tab>
+                        </Pane>
                     </div>
                     <div>
-                        <h1>
-                            {first_name} {last_name}
-                        </h1>
+                        <Pane
+                            elevation = {1}
+                            backgroundColor = "white"
+                            width = {200}
+                            height = {400}
+                            flexDirection = "column"
+                        >
+                          Content Panel              
+                        </Pane>
                     </div>
                 </Grid>
             </Pane>
