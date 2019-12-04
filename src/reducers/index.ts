@@ -1,6 +1,21 @@
-import api from './api'
 import main from './main'
 import patroller from './patroller'
-import physical_address from './physical_address'
+import patrollers from './patrollers'
+import messages from './messages'
+import calendar from './calendar'
+import authentication from './authentication'
+import views from './views'
+import forms from './forms'
+import schedule from './schedule'
 
-export { api, main, patroller, physical_address }
+export {
+    main,
+    patrollers,
+    patroller,
+    messages,
+    calendar,
+    authentication,
+    views,
+    schedule,
+    forms
+}

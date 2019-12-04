@@ -3,15 +3,19 @@ import { statement } from '@babel/template'
 
 const INITIAL_STATE = {
     sp_number: 48,
-    name: 'Ryan Tate',
+    first_name: 'Ryan',
+    last_name: 'Tate',
+    city: 'Tacoma',
     email: 'ryan.michael.tate@gmail.com',
     phone_number: '206-519-2818',
-    password: 'test',
-    retype_password: 'test',
+    password: 'g1WmoV',
+    retype_password: 'g1WmoV',
     patroller_id: '',
+    profile_pic: 'https://avatars2.githubusercontent.com/u/2837196?s=460&v=4',
+    details: {},
 }
 
-export default function(
+export default function (
     state: { [x: number]: any } = INITIAL_STATE,
     { type, id, value }: AnyAction,
 ) {
