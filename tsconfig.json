@@ -22,6 +22,6 @@
   "include": [
     "src",
     "evergreen-ui.d.ts",
-    "react-css-grid.d.ts"
+    "reflexbox.d.ts"
   ]
 }

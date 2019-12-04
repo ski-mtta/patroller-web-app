@@ -2,31 +2,35 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { PersistGate } from 'redux-persist/integration/react'
 
-import store from './store'
+import { state, persistor } from './store'
 import './index.css'
 import * as serviceWorker from './serviceWorker'
 
 import Layout from './components/Layout'
 import Login from './components/Login'
 import Join from './components/Join'
-import Profile from './components/Profile'
+import Patroller from './components/Patroller'
 
 const App = () => (
     <Layout
         Router={() => (
             <Router>
                 <Route path={'/'} exact component={Login} />
+                <Route path={'/login'} exact component={Login} />
                 <Route path={'/join'} exact component={Join} />
-                <Route path={'/profile'} exact component={Profile} />
+                <Route path={'/home'} exact component={Patroller} />
             </Router>
         )}
     />
 )
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
+    <Provider store={state}>
+        <PersistGate loading={null} persistor={persistor}>
+            <App />
+        </PersistGate>
     </Provider>,
     document.getElementById('root'),
 )

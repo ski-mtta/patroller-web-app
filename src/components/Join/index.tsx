@@ -6,6 +6,7 @@ import { number } from 'prop-types'
 import { title } from 'change-case'
 
 import Password from '../Password'
+import { Routes } from '../../reducers/views'
 
 class Join extends Component<any, any> {
     state = {
@@ -93,46 +94,73 @@ class Join extends Component<any, any> {
     }
 
     render() {
-        const { dispatch, patroller, client } = this.props
-        return this.state.redirect ? (
-            <Redirect push to="/profile" />
-        ) : (
-            <Pane display={'flex'} justifyContent={'center'}>
-                <Pane elevation={4} width={320}>
-                    <FormField
-                        label={
-                            <h2 style={{ paddingLeft: 10 }}>
-                                Join MTTA Ski Patrol
-                            </h2>
-                        }
-                        width={300}
-                        padding={5}
-                    >
-                        {this.renderPatrollerDetails()}
-                        <hr />
-                        <Password />
-                        <hr />
-                        <Button
-                            height={42}
-                            width={280}
-                            margin={5}
-                            appearance={'primary'}
-                            intent={'danger'}
-                            justifyContent={'center'}
-                            onClick={() => {
-                                console.log('patroller', patroller)
-                                // dispatch(client.createPatroller(patroller));
-                                this.setState({
-                                    redirect: true,
-                                })
-                            }}
-                        >
-                            Join
-                        </Button>
-                    </FormField>
-                </Pane>
-            </Pane>
-        )
+        const {
+            dispatch,
+            patroller,
+            views: { activeRoute },
+        } = this.props
+
+        switch (activeRoute) {
+            case Routes.Login:
+                return <Redirect push to="/login" />
+            case Routes.Patroller:
+                return <Redirect push to="/home" />
+            default:
+                return (
+                    <Pane display={'flex'} justifyContent={'center'}>
+                        <Pane elevation={4} width={320}>
+                            <FormField
+                                label={
+                                    <h2 style={{ paddingLeft: 10 }}>
+                                        Join MTTA Ski Patrol
+                                    </h2>
+                                }
+                                width={300}
+                                padding={5}
+                            >
+                                {this.renderPatrollerDetails()}
+                                <hr />
+                                <Password />
+                                <hr />
+                                <Button
+                                    height={42}
+                                    width={280}
+                                    margin={5}
+                                    appearance={'primary'}
+                                    intent={'danger'}
+                                    justifyContent={'center'}
+                                    onClick={() => {
+                                        dispatch({
+                                            type: 'VIEW_ACTION',
+                                            id: 'activeRoute',
+                                            value: Routes.Patroller,
+                                        })
+                                    }}
+                                >
+                                    Join
+                                </Button>
+                                <Button
+                                    height={42}
+                                    width={280}
+                                    margin={5}
+                                    appearance={'minimal'}
+                                    intent={'danger'}
+                                    justifyContent={'center'}
+                                    onClick={() => {
+                                        dispatch({
+                                            type: 'VIEW_ACTION',
+                                            id: 'activeRoute',
+                                            value: Routes.Login,
+                                        })
+                                    }}
+                                >
+                                    Login
+                                </Button>
+                            </FormField>
+                        </Pane>
+                    </Pane>
+                )
+        }
     }
 }
 
@@ -140,7 +168,7 @@ const mapStateToProps = (state: any, props: Props<any>) => {
     return {
         main: state.main,
         patroller: state.patroller,
-        client: state.api.client,
+        views: state.views,
     }
 }
 

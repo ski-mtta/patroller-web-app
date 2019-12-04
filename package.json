@@ -3,26 +3,36 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/google-map-react": "^1.1.0",
     "@types/jest": "24.0.13",
     "@types/node": "12.0.2",
     "@types/react": "^16.8.18",
+    "@types/react-big-calendar": "^0.22.2",
+    "@types/react-datepicker": "^2.9.2",
     "@types/react-dom": "16.8.4",
     "@types/react-redux": "^7.0.9",
     "@types/react-router-dom": "^4.3.3",
     "change-case": "^3.1.0",
     "evergreen-ui": "^4.16.0",
-    "patroller-api-client": "github:ski-mtta/patroller-api-client",
+    "google-map-react": "^1.1.5",
+    "localforage": "^1.7.3",
+    "moment": "^2.24.0",
+    "patroller-api-client": "file:../patroller-api-client",
     "react": "^16.8.6",
-    "react-css-grid": "^2.0.0-0",
+    "react-big-calendar": "^0.22.0",
+    "react-datepicker": "^2.9.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",
     "redux": "^4.0.1",
+    "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
+    "reflexbox": "^4.0.5",
     "typescript": "3.4.5"
   },
   "scripts": {
+    "prepare": "npm build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -47,6 +57,7 @@
   },
   "devDependencies": {
     "prettier": "^1.17.1",
-    "redux-devtools-extension": "^2.13.8"
+    "redux-devtools-extension": "^2.13.8",
+    "skimtta-oas": "git+https://github.com/ski-mtta/openapi-specification.git"
   }
 }
