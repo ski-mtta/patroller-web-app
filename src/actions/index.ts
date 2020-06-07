@@ -152,6 +152,8 @@ export class Api implements ApiInterface {
         return async (dispatch: any) => {
             const { data } = await this.patrollersApi.getPatrollerSchedule(sp_number);
 
+            console.log('data', data);
+
         }
     }
 

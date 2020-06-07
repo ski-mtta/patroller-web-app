@@ -8,6 +8,7 @@ export enum Routes {
 }
 
 export enum Views {
+    OnPatrol = 'On Patrol',
     Calendar = 'Calendar',
     Messages = 'Messages',
     Schedule = 'Schedule',
@@ -26,7 +27,7 @@ const INITIAL_STATE = {
     activeView: Views.Profile,
 }
 
-export default function (
+export default function(
     state: { [x: number]: any } = INITIAL_STATE,
     { type, id, value }: AnyAction,
 ) {

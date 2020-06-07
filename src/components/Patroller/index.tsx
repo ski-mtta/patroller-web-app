@@ -18,27 +18,28 @@ import Calendar from '../Calendar/index'
 import Patrollers from '../Patrollers/index'
 import Schedule from '../Schedule/index'
 import Map from '../Map/index'
+import OnPatrol from '../OnPatrol/index'
 
 import { Views, Routes } from '../../reducers/views'
 const views = Object.values(Views)
 
 const getDisplaySidenav = () => {
-    const MIN_SCREEN_WIDTH = 710;
+    const MIN_SCREEN_WIDTH = 710
     return window.screen.width > MIN_SCREEN_WIDTH ? undefined : 'none'
 }
 
 class Patroller extends Component<any, any> {
     constructor(ops: any) {
-        super(ops);
+        super(ops)
         this.state = {
-            showSideNav: getDisplaySidenav()
-        };
+            showSideNav: getDisplaySidenav(),
+        }
     }
 
     componentDidMount() {
-        window.addEventListener("resize", () => {
+        window.addEventListener('resize', () => {
             this.setState({ showSideNav: getDisplaySidenav() })
-        });
+        })
     }
 
     renderTab(tab: String) {
@@ -55,6 +56,8 @@ class Patroller extends Component<any, any> {
                 return <Schedule />
             case Views.Map:
                 return <Map />
+            case Views.OnPatrol:
+                return <OnPatrol />
             default:
                 return <Patrollers />
         }
@@ -66,7 +69,7 @@ class Patroller extends Component<any, any> {
             views: { activeView, activeRoute },
             patroller: { first_name, last_name, profile_pic },
         } = this.props
-        const { showSideNav } = this.state;
+        const { showSideNav } = this.state
 
         if (activeRoute == Routes.Logout) {
             return <Redirect push to={'/login'} />

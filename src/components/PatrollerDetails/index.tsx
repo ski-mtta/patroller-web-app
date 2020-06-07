@@ -17,6 +17,7 @@ import {
 import Api from '../../actions'
 
 import SendMessage from '../SendMessage/index';
+import DutyDates from '../DutyDates/index';
 
 enum Actions {
     SendMessage,
@@ -37,7 +38,7 @@ class PatrollerDetails extends Component<any, any> {
             case Actions.SendMessage:
                 return (<SendMessage activePatroller={details} />)
             case Actions.DutyDates:
-                return <Card>Duty Dates</Card>
+                return (<DutyDates activePatroller={details} />)
             case Actions.TrailReports:
                 return <Card>Trail Reports</Card>
             default:
